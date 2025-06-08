@@ -120,4 +120,40 @@ class wr_rd_sequence extends uvm_sequence#(mem_seq_item);
     `uvm_do(rd_seq)
   endtask
 endclass
+
+class mem_wr_rd_sequence extends uvm_sequence#(mem_seq_item);
+    mem_seq_item wr_txn,rd_txn,txn_q[$],txn_copy;
+    `uvm_object_utils(mem_wr_rd_sequence)
+
+    function new(string name = "mem_wr_rd_sequence");
+        super.new(name);
+    endfunction
+
+    virtual task body();
+        repeat(5) begin 
+            wr_txn = mem_seq_item ::type_id::create("wr_txn");
+            start_item(wr_txn);
+                assert (wr_txn.randomize with {
+                    wr_txn.wr_en == 1;
+                })
+            finish_item(wr_txn);
+            txn_copy = mem_seq_item ::type_id::create("txn_copy");
+            txn_copy.copy(wr_txn);
+            txn_q.push_back(txn_copy);
+        end
+
+        repeat(5) begin
+            txn_copy = txn_q.pop_front(); 
+            rd_txn = mem_seq_item ::type_id::create("rd_txn");
+            start_item(rd_txn);
+                assert (rd_txn.randomize with {
+                    rd_txn.rd_en == 1;
+                    rd_txn.addr  == txn_copy.addr;
+
+                })
+            finish_item(rd_txn);
+        end
+    endtask
+
+endclass
 //=========================================================================
