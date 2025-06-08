@@ -34,18 +34,16 @@ class mem_model_base_test extends uvm_test;
   //---------------------------------------  
   virtual function void end_of_elaboration();
     //print's the topology
-    print();
+		uvm_top.print_topology();
   endfunction
 
   //---------------------------------------
   // end_of_elobaration phase
   //---------------------------------------   
- function void report_phase(uvm_phase phase);
-   uvm_report_server svr;
-   super.report_phase(phase);
-   
-   svr = uvm_report_server::get_server();
-   if(svr.get_severity_count(UVM_FATAL)+svr.get_severity_count(UVM_ERROR)>0) begin
+  function void report_phase(uvm_phase phase);
+    uvm_report_server svr = uvm_report_server::get_server();
+    super.report_phase(phase);
+    if(svr.get_severity_count(UVM_FATAL)+svr.get_severity_count(UVM_ERROR)+svr.get_severity_count(UVM_WARNING)>0) 		begin
      `uvm_info(get_type_name(), "---------------------------------------", UVM_NONE)
      `uvm_info(get_type_name(), "----            TEST FAIL          ----", UVM_NONE)
      `uvm_info(get_type_name(), "---------------------------------------", UVM_NONE)
@@ -55,6 +53,6 @@ class mem_model_base_test extends uvm_test;
      `uvm_info(get_type_name(), "----           TEST PASS           ----", UVM_NONE)
      `uvm_info(get_type_name(), "---------------------------------------", UVM_NONE)
     end
-  endfunction 
+  endfunction  
 
 endclass : mem_model_base_test
