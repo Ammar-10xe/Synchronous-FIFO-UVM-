@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-//						mem_interface - www.verificationguide.com
+//						mem_interface 
 //-------------------------------------------------------------------------
 
 interface mem_if(input logic clk,reset);

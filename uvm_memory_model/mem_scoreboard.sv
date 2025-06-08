@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-//						mem_scoreboard - www.verificationguide.com 
+//						mem_scoreboard  
 //-------------------------------------------------------------------------
 
 class mem_scoreboard extends uvm_scoreboard;

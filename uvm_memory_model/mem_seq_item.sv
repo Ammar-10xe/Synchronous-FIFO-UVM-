@@ -1,5 +1,5 @@
 //-------------------------------------------------------------------------
-//						mem_seq_item - www.verificationguide.com 
+//						mem_seq_item  
 //-------------------------------------------------------------------------
 
 class mem_seq_item extends uvm_sequence_item;
