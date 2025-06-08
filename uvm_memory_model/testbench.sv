@@ -2,45 +2,36 @@
 //				   testbench.sv
 //-------------------------------------------------------------------------
 //---------------------------------------------------------------
-//including interfcae and testcase files
+
+ //including uvm package and macros
 `include "uvm_macros.svh"
  import uvm_pkg::*;
 
+ //including interface and testcase files
 `include "mem_interface.sv"
 `include "mem_test.sv"
 `include "mem_wr_rd_test.sv"
 //---------------------------------------------------------------
 
-module tbench_top;
+module tb_top;
 
-  //---------------------------------------
-  //clock and reset signal declaration
-  //---------------------------------------
-  bit clk;
-  bit reset;
-  
-  //---------------------------------------
-  //clock generation
-  //---------------------------------------
-  always #5 clk = ~clk;
-  
-  //---------------------------------------
-  //reset Generation
-  //---------------------------------------
-  initial begin
-    reset = 1;
-    #5 reset =0;
-  end
-  
-  //---------------------------------------
-  //interface instance
-  //---------------------------------------
+  // mem_if intf;
+  reg clk;
+  reg reset;
   mem_if intf(clk,reset);
-  
-  //---------------------------------------
-  //DUT instance
-  //---------------------------------------
-  memory DUT (
+
+  initial begin // 100MH clk generation
+    clk = 0;
+    forever #5 clk = ~clk;
+  end
+
+  initial begin // reset generation
+    reset = 1;
+    repeat(5) @(posedge clk);
+    reset = 0;
+  end
+
+  memory DUT ( // DUT instantiations
     .clk(intf.clk),
     .reset(intf.reset),
     .addr(intf.addr),
@@ -49,23 +40,15 @@ module tbench_top;
     .wdata(intf.wdata),
     .rdata(intf.rdata)
    );
-  
-  //---------------------------------------
-  //passing the interface handle to lower heirarchy using set method 
-  //and enabling the wave dump
-  //---------------------------------------
-  initial begin 
+
+  initial begin // passing the interface handle to lower heirarchy using set method
     uvm_config_db#(virtual mem_if)::set(uvm_root::get(),"*","vif",intf);
-    //enable wave dump
-    $dumpfile("dump.vcd"); 
+    $dumpfile("dump.vcd");
     $dumpvars;
   end
-  
-  //---------------------------------------
-  //calling test
-  //---------------------------------------
-  initial begin 
-    run_test();
+
+  initial begin
+    run_test("");
   end
-  
+
 endmodule

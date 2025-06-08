@@ -1,9 +1,9 @@
 //-------------------------------------------------------------------------
-//						mem_interface - 
+//						mem_interface
 //-------------------------------------------------------------------------
 
 interface mem_if(input logic clk,reset);
-  
+
   //---------------------------------------
   //declaring the signals
   //---------------------------------------
@@ -12,7 +12,7 @@ interface mem_if(input logic clk,reset);
   logic rd_en;
   logic [7:0] wdata;
   logic [7:0] rdata;
-  
+
   //---------------------------------------
   //driver clocking block
   //---------------------------------------
@@ -22,9 +22,9 @@ interface mem_if(input logic clk,reset);
     output wr_en;
     output rd_en;
     output wdata;
-    input  rdata;  
+    input  rdata;
   endclocking
-  
+
   //---------------------------------------
   //monitor clocking block
   //---------------------------------------
@@ -34,17 +34,17 @@ interface mem_if(input logic clk,reset);
     input wr_en;
     input rd_en;
     input wdata;
-    input rdata;  
+    input rdata;
   endclocking
-  
+
   //---------------------------------------
   //driver modport
   //---------------------------------------
   modport DRIVER  (clocking driver_cb,input clk,reset);
-  
+
   //---------------------------------------
-  //monitor modport  
+  //monitor modport
   //---------------------------------------
   modport MONITOR (clocking monitor_cb,input clk,reset);
-  
+
 endinterface
