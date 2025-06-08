@@ -1,8 +1,11 @@
 //-------------------------------------------------------------------------
-//	 testbench.sv
+//				   testbench.sv
 //-------------------------------------------------------------------------
 //---------------------------------------------------------------
 //including interfcae and testcase files
+`include "uvm_macros.svh"
+ import uvm_pkg::*;
+
 `include "mem_interface.sv"
 `include "mem_test.sv"
 `include "mem_wr_rd_test.sv"
