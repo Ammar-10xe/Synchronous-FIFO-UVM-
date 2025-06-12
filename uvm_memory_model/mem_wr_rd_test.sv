@@ -8,7 +8,7 @@ class mem_wr_rd_test extends mem_model_base_test;
   //---------------------------------------
   // sequence instance 
   //--------------------------------------- 
-  wr_rd_sequence seq;
+  mem_wr_rd_sequence seq;
 
   //---------------------------------------
   // constructor
@@ -24,7 +24,7 @@ class mem_wr_rd_test extends mem_model_base_test;
     super.build_phase(phase);
 
     // Create the sequence
-    seq = wr_rd_sequence::type_id::create("seq");
+    seq = mem_wr_rd_sequence::type_id::create("seq");
   endfunction : build_phase
   
   //---------------------------------------

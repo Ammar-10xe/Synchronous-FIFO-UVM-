@@ -17,7 +17,7 @@ class mem_scoreboard extends uvm_scoreboard;
   //---------------------------------------
   // sc_mem 
   //---------------------------------------
-  bit [7:0] sc_mem [4];
+  bit [7:0] sc_mem [256];
 
   //---------------------------------------
   //port to recive packets from monitor
