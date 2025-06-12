@@ -1,8 +1,6 @@
 //-------------------------------------------------------------------------
-//						mem_test -  
+//						mem_test 
 //-------------------------------------------------------------------------
-
-`include "mem_env.sv"
 class mem_model_base_test extends uvm_test;
 
   `uvm_component_utils(mem_model_base_test)

@@ -3,16 +3,6 @@
 //-------------------------------------------------------------------------
 //---------------------------------------------------------------
 
- //including uvm package and macros
-`include "uvm_macros.svh"
- import uvm_pkg::*;
-
- //including interface and testcase files
-`include "mem_interface.sv"
-`include "mem_test.sv"
-`include "mem_wr_rd_test.sv"
-//---------------------------------------------------------------
-
 module tb_top;
 
   // mem_if intf;

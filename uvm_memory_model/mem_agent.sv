@@ -1,13 +1,6 @@
 //-------------------------------------------------------------------------
-//						mem_agent -  
+//						mem_agent 
 //-------------------------------------------------------------------------
-
-`include "mem_seq_item.sv"
-`include "mem_sequencer.sv"
-`include "mem_sequence.sv"
-`include "mem_driver.sv"
-`include "mem_monitor.sv"
-
 class mem_agent extends uvm_agent;
 
   //---------------------------------------
